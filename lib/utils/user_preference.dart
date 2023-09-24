@@ -40,6 +40,21 @@ class UserPrefrence {
     return auth;
   }
 
+  static Future<bool> removeUser() async {
+    var pref = await SharedPreferences.getInstance();
+    pref.remove('nama');
+    pref.remove('email');
+    pref.remove('username');
+    pref.remove('role');
+    pref.remove('subsatker');
+    pref.remove('satker');
+    pref.remove('token');
+    pref.remove('api_key');
+    pref.remove('expiration_date');
+    pref.setBool('login', false);
+    return true;
+  }
+
   static Future<UserData> getUser() async {
     var pref = await SharedPreferences.getInstance();
     UserData userData = UserData(

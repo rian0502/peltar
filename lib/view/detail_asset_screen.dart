@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:peltar/view/component/button_rounded.dart';
 import 'package:peltar/viewmodel/assets_viewmodel.dart';
@@ -16,11 +17,61 @@ class DetailAssetScreen extends StatelessWidget {
           return Column(
             children: [
               const SizedBox(
+                height: 20,
+              ),
+              Center(
+                  child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  IconButton(
+                    onPressed: () {
+                      context.pop();
+                    },
+                    icon: const Icon(Icons.arrow_back),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 8,
+                  ),
+                  Text(
+                    'Detail Asset',
+                    style: GoogleFonts.poppins(
+                        fontSize: 25,
+                        color: const Color(0xff1E3A8A),
+                        fontWeight: FontWeight.w600),
+                  ),
+                ],
+              )),
+              const SizedBox(
                 height: 60,
               ),
-              Image.asset('assets/images/dummyAset.png'),
+              Container(
+                width: 200.0, // Atur lebar container sesuai kebutuhan Anda
+                height: 200.0, // Atur tinggi container sesuai kebutuhan Anda
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/dummyAset.png'),
+                    fit: BoxFit.fill, // Mengatur BoxFit menjadi fill
+                  ),
+                ),
+              ),
               const SizedBox(
-                height: 100,
+                height: 20,
+              ),
+              ButtonRounded(
+                title: 'Add Inspection',
+                route: '/form-inspection',
+                id: asset?.id ?? 0,
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(onPressed: () {}, child: Text('Detail')),
+                  ElevatedButton(onPressed: () {}, child: Text('Inspection')),
+                  ElevatedButton(onPressed: () {}, child: Text('Document')),
+                ],
               ),
               Expanded(
                   child: Container(
@@ -67,30 +118,6 @@ class DetailAssetScreen extends StatelessWidget {
                             fontWeight: FontWeight.w700,
                             color: Theme.of(context).primaryColor,
                           ),
-                        ),
-                      ),
-                      Positioned(
-                        top: 200,
-                        left: MediaQuery.of(context).size.width / 2 - 50,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            ButtonRounded(
-                              title: 'Inspection',
-                              route: '/form-inspection',
-                              id: asset.id ?? 0,
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            const SizedBox(
-                              width: 20,
-                            ),
-                            ButtonRounded(
-                                title: 'Detail',
-                                route: '/detail',
-                                id: asset.id ?? 0)
-                          ],
                         ),
                       ),
                     ],

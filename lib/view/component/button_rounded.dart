@@ -17,8 +17,9 @@ class ButtonRounded extends StatelessWidget {
       },
       child: Container(
         height: 40,
+        width: 200,
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: const Color(0xFF00337C),
           borderRadius: BorderRadius.circular(30),
         ),
         child: Center(
@@ -29,7 +30,7 @@ class ButtonRounded extends StatelessWidget {
               style: GoogleFonts.poppins(
                 fontSize: 15,
                 fontWeight: FontWeight.w700,
-                color: const Color(0xFF00337C),
+                color: Colors.white,
               ),
             ),
           ),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:peltar/viewmodel/login_viewmodel.dart';
 import 'package:provider/provider.dart';
@@ -266,7 +267,10 @@ class SettingScreens extends StatelessWidget {
               ElevatedButton(
                 onPressed: () {
                   Provider.of<LoginViewModel>(context, listen: false)
-                      .logout(context);
+                      .logout(context)
+                      .then((value) {
+                    context.go('/login');
+                  });
                 },
                 child: const Text('Logout'),
               )

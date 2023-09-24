@@ -54,18 +54,12 @@ class LoginViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> logout(BuildContext context) async {
-    print('logout');
+  Future<bool> logout(BuildContext context) async {
     var token = await UserPrefrence.getAuth();
-    if (token.isEmpty) {
-      loggedIn = false;
-    } else {
-      loggedIn = true;
-    }
-    if (context.mounted) {
-      context.go('/login');
-    }
+    loggedIn = false;
+    await UserPrefrence.removeUser();
     notifyListeners();
+    return true;
   }
 
   Future<void> initializeApp() async {

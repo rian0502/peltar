@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:peltar/viewmodel/login_viewmodel.dart';
+import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../component/carousel_slidder.dart';
 import '../component/menuAsset.dart';
@@ -36,9 +39,15 @@ class _DashboardPageState extends State<DashboardPage> {
                 children: [
                   Image.asset('assets/images/logo.png', height: 80, width: 80),
                   IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        Provider.of<LoginViewModel>(context, listen: false)
+                            .logout(context)
+                            .then((value) {
+                          context.go('/login');
+                        });
+                      },
                       icon: const Icon(
-                        Icons.notification_important,
+                        Icons.logout,
                         color: Colors.white,
                       )),
                 ],
