@@ -17,20 +17,23 @@ class DetailAssetScreen extends StatelessWidget {
           return Column(
             children: [
               const SizedBox(
-                height: 20,
+                height: 40,
               ),
               Center(
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  IconButton(
-                    onPressed: () {
-                      context.pop();
-                    },
-                    icon: const Icon(Icons.arrow_back),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: IconButton(
+                      onPressed: () {
+                        context.pop();
+                      },
+                      icon: const Icon(Icons.arrow_back_ios),
+                    ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 8,
+                  const SizedBox(
+                    width: 70,
                   ),
                   Text(
                     'Detail Asset',
@@ -68,7 +71,28 @@ class DetailAssetScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  ElevatedButton(onPressed: () {}, child: Text('Detail')),
+                  ElevatedButton(
+                      onPressed: () {
+                        showModalBottomSheet(
+                            enableDrag: true,
+                            context: context,
+                            builder: (context) => Container(
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceEvenly,
+                                        children: [
+                                          Text('Kode Asset'),
+                                          Text('-'),
+                                          Text(asset!.codeAsset ?? '-'),
+                                        ],
+                                      )
+                                    ],
+                                  ),
+                                ));
+                      },
+                      child: Text('Detail')),
                   ElevatedButton(onPressed: () {}, child: Text('Inspection')),
                   ElevatedButton(onPressed: () {}, child: Text('Document')),
                 ],

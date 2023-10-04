@@ -28,6 +28,8 @@ class Assets {
   }
 }
 
+
+Asset assetFromJson(String str) => Asset.fromJson(json.decode(str));
 class Asset {
   int? id;
   String? stockcode;

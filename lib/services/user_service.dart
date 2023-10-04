@@ -2,7 +2,7 @@ import '../models/user_data.dart';
 import 'package:dio/dio.dart';
 
 class UserSerivce {
-  static String url = 'http://10.0.2.2:8000/api/v1/auth/';
+  static String url = 'http://192.168.100.217:8000/api/v1/auth/';
   static Dio dio = Dio();
 
   static Future<UserData?> login(String username, String password) async {

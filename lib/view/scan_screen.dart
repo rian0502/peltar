@@ -1,9 +1,12 @@
 import 'dart:developer';
 import 'dart:io';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:peltar/services/assets_service.dart';
+import 'package:provider/provider.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
+import '../utils/user_preference.dart';
+import '../viewmodel/assets_viewmodel.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
@@ -13,10 +16,33 @@ class ScanScreen extends StatefulWidget {
 }
 
 class _ScanScreenState extends State<ScanScreen> {
-
   Barcode? result;
   QRViewController? controller;
   final GlobalKey qrKey = GlobalKey(debugLabel: 'QR');
+
+  setAsset(String? id) async {
+    if (id == null) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Asset not found'),
+        ),
+      );
+    }
+    var getToken = await UserPrefrence.getAuth();
+    await AssetsService.assetByCode(getToken[0], id).then((value) {
+      if (value.id != null) {
+        Provider.of<AssetsViewModel>(context, listen: false).setAsset(value);
+        context.pop();
+        context.push('/detail-asset');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('Asset not found'),
+          ),
+        );
+      }
+    });
+  }
 
   @override
   void reassemble() {
@@ -38,10 +64,11 @@ class _ScanScreenState extends State<ScanScreen> {
       ),
     );
   }
+
   Widget _buildQrView(BuildContext context) {
     // For this example we check how width or tall the device is and change the scanArea and overlay accordingly.
     var scanArea = (MediaQuery.of(context).size.width < 400 ||
-        MediaQuery.of(context).size.height < 400)
+            MediaQuery.of(context).size.height < 400)
         ? 250.0
         : 350.0;
     // To ensure the Scanner view is properly sizes after rotation
@@ -68,9 +95,8 @@ class _ScanScreenState extends State<ScanScreen> {
         result = scanData;
       });
       if (result?.code != null) {
-        context.pushNamed('/detail-asset',
-            extra: '1');
         controller.pauseCamera();
+        setAsset(result?.code);
       }
     });
     controller.pauseCamera();

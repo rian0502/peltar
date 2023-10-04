@@ -29,7 +29,7 @@ class _AssetsScreensState extends State<AssetsScreens> {
       body: Column(
         children: [
           const SizedBox(
-            height: 50,
+            height: 40,
           ),
           Center(
             child: Row(
