@@ -9,41 +9,63 @@ class AssetTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: const Offset(0, 9), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.end,
-        children: [
-          Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: Text(asset!.namaAsset!,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w600,
-                  ))),
-          Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, top: 10),
-              child: Text(asset!.merk!,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                  ))),
-          Padding(
-              padding: const EdgeInsets.only(left: 10, right: 10, bottom: 2),
-              child: Text(asset!.lokasi!,
-                  style: GoogleFonts.poppins(
-                    fontWeight: FontWeight.w500,
-                  ))),
-        ],
-      ),
-    );
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey.withOpacity(0.5),
+              spreadRadius: 5,
+              blurRadius: 7,
+              offset: const Offset(0, 9), // changes position of shadow
+            ),
+          ],
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(
+                left: 20,
+              ),
+              child: Container(
+                width: 50.0,
+                height: 50.0,
+                decoration: const BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/images/dummyAset.png'),
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ),
+            ),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Text(asset!.namaAsset!,
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                        ))),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, top: 10),
+                    child: Text(asset!.merk!,
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                        ))),
+                Padding(
+                    padding:
+                        const EdgeInsets.only(left: 10, right: 10, bottom: 2),
+                    child: Text(asset!.lokasi!,
+                        style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w500,
+                        ))),
+              ],
+            ),
+          ],
+        ));
   }
 }

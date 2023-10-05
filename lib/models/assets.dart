@@ -1,4 +1,3 @@
-
 import 'dart:convert';
 
 Assets assetsFromJson(String str) => Assets.fromJson(json.decode(str));
@@ -13,16 +12,16 @@ class Assets {
     if (json['asset'] != null) {
       asset = <Asset>[];
       json['asset'].forEach((v) {
-        asset!.add(new Asset.fromJson(v));
+        asset!.add(Asset.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['status'] = this.status;
-    if (this.asset != null) {
-      data['asset'] = this.asset!.map((v) => v.toJson()).toList();
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['status'] = status;
+    if (asset != null) {
+      data['asset'] = asset!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -83,22 +82,22 @@ class Asset {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['id'] = this.id;
-    data['stockcode'] = this.stockcode;
-    data['code_asset'] = this.codeAsset;
-    data['serialnumber'] = this.serialnumber;
-    data['nama_asset'] = this.namaAsset;
-    data['merk'] = this.merk;
-    data['model'] = this.model;
-    data['image'] = this.image;
-    data['spesifikasi'] = this.spesifikasi;
-    data['deskripsi'] = this.deskripsi;
-    data['lokasi'] = this.lokasi;
-    data['kategori'] = this.kategori;
-    data['status'] = this.status;
-    data['updated_at'] = this.updatedAt;
-    data['created_at'] = this.createdAt;
+    final Map<String, dynamic> data = <String, dynamic>{};
+    data['id'] = id;
+    data['stockcode'] = stockcode;
+    data['code_asset'] = codeAsset;
+    data['serialnumber'] = serialnumber;
+    data['nama_asset'] = namaAsset;
+    data['merk'] = merk;
+    data['model'] = model;
+    data['image'] = image;
+    data['spesifikasi'] = spesifikasi;
+    data['deskripsi'] = deskripsi;
+    data['lokasi'] = lokasi;
+    data['kategori'] = kategori;
+    data['status'] = status;
+    data['updated_at'] = updatedAt;
+    data['created_at'] = createdAt;
     return data;
   }
 }

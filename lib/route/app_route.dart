@@ -1,14 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:peltar/view/detail_asset_screen.dart';
+import 'package:peltar/view/view_import.dart';
 import 'package:peltar/viewmodel/login_viewmodel.dart';
-import '../view/assets_screen.dart';
-import '../view/form_inspection_screen.dart';
-import '../view/home_screen.dart';
-import '../view/login_screen.dart';
-import '../view/maintenance_screen.dart';
-import '../view/scan_screen.dart';
-import '../view/splash_screen.dart';
 
 class AppRoute {
   final LoginViewModel loginViewModel;
