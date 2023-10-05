@@ -32,30 +32,44 @@ class LoginViewModel extends ChangeNotifier {
 
   void login(BuildContext context) async {
     toggleLoading();
-    var user = await UserSerivce.login(
-        usernameController.text, passwordController.text);
-    if (user != null) {
-      await UserPrefrence.saveUser(user);
-      toggleLoading();
-      if (context.mounted) {
-        loggedIn = true;
-        context.go('/home');
-      }
-    } else {
+    if (usernameController.text.toString().isEmpty ||
+        passwordController.text.isEmpty) {
       toggleLoading();
       if (context.mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Invalid username or password'),
+            content: Text('The form must be filled out completely'),
           ),
         );
       }
+    } else {
+      var user = await UserSerivce.login(
+              usernameController.text, passwordController.text)
+          .onError((error, stackTrace) {
+        toggleLoading();
+        if (context.mounted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(
+              content: Text('Invalid username or password'),
+            ),
+          );
+        }
+        return null;
+      });
+      if (user!.apiKey!.apiKey!.toString().isNotEmpty) {
+        await UserPrefrence.saveUser(user);
+        toggleLoading();
+        if (context.mounted) {
+          loggedIn = true;
+          context.go('/home');
+        }
+      }
     }
+
     notifyListeners();
   }
 
   Future<bool> logout(BuildContext context) async {
-    var token = await UserPrefrence.getAuth();
     loggedIn = false;
     await UserPrefrence.removeUser();
     notifyListeners();
@@ -64,11 +78,13 @@ class LoginViewModel extends ChangeNotifier {
 
   Future<void> initializeApp() async {
     var token = await UserPrefrence.getAuth();
-
     if (token.isEmpty) {
       loggedIn = false;
+      await UserPrefrence.removeUser();
+      notifyListeners();
     } else {
       loggedIn = true;
+      notifyListeners();
     }
     notifyListeners();
   }

@@ -57,13 +57,17 @@ class DetailAssetScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              ButtonRounded(
-                title: 'Add Inspection',
-                route: '/form-inspection',
-                id: asset?.id ?? 0,
+              Column(
+                children: [
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  ButtonRounded(
+                    title: 'Add Inspection',
+                    route: '/form-inspection',
+                    id: asset?.id ?? 0,
+                  ),
+                ],
               ),
               const SizedBox(
                 height: 20,

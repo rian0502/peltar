@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:peltar/models/assets.dart';
 import 'package:peltar/utils/user_preference.dart';
-
 import '../services/assets_service.dart';
 
 class AssetsViewModel extends ChangeNotifier {
@@ -26,14 +25,12 @@ class AssetsViewModel extends ChangeNotifier {
     try {
       var token = await UserPrefrence.getAuth();
       if (token.isEmpty) {
-        print('token is empty');
+
       } else {
         var assets = await AssetsService.getAssets(token[0]);
-        if (assets != null) {
+        if (assets.isNotEmpty) {
           setAssets(assets);
           notifyListeners();
-        } else {
-          print('assets is empty');
         }
       }
     } catch (e) {

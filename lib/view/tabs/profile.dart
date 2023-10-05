@@ -19,7 +19,7 @@ class _ProfileState extends State<Profile> {
       setState(() {
         nama = value.getString('nama')!;
         email = value.getString('email')!;
-        satker = value.getString('satker')!;
+        satker = value.getString('role')!;
       });
     });
     super.initState();
@@ -158,7 +158,6 @@ class _ProfileState extends State<Profile> {
                 const SizedBox(
                   height: 20,
                 ),
-
               ],
             ),
           ),

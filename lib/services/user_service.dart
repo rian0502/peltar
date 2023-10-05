@@ -9,8 +9,6 @@ class UserSerivce {
     dio.options.headers['content-Type'] = 'application/json';
     var response = await dio.post('${url}login',
         data: {'username': username, 'password': password});
-
-    print(response.data);
     if (response.statusCode == 200) {
       return UserData.fromJson(response.data);
     } else {

@@ -1,10 +1,8 @@
 import 'package:peltar/services/user_service.dart';
-
 import '../models/user_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserPrefrence {
-
   static Future<bool> saveUser(UserData userData) async {
     var pref = await SharedPreferences.getInstance();
     pref.setBool('login', true);
@@ -25,7 +23,7 @@ class UserPrefrence {
     List<String> auth = [];
     String token = pref.getString('token') ?? '';
     if (token.isEmpty) {
-        pref.setBool('login', false);
+      pref.setBool('login', false);
       return auth;
     } else {
       var cek = await UserSerivce.checkToken(token);

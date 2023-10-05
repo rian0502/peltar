@@ -1,7 +1,6 @@
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:peltar/models/user_data.dart';
 import 'package:peltar/view/tabs/activity.dart';
 import 'package:peltar/view/tabs/dashboard.dart';
 import 'package:peltar/view/tabs/profile.dart';
@@ -22,7 +21,7 @@ class _HomeState extends State<Home> {
   static const String prefSelectedIndexKey = 'selectedIndex';
   static List<Widget> pages = <Widget>[
     const DashboardPage(),
-    const ActivityScreens(),
+    ActivityScreens(),
     const SettingScreens(),
     const Profile(),
   ];

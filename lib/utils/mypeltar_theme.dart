@@ -4,11 +4,11 @@ import 'package:google_fonts/google_fonts.dart';
 
 class MyPeltarTheme{
   static TextTheme lightTextTheme = TextTheme(
-    bodyText1: GoogleFonts.poppins(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700),
-    headline1: GoogleFonts.poppins(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold),
-    headline2: GoogleFonts.poppins(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w700),
-    headline3: GoogleFonts.poppins(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
-    headline6: GoogleFonts.poppins(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
+    bodyLarge: GoogleFonts.poppins(color: Colors.black, fontSize: 14, fontWeight: FontWeight.w700),
+    displayLarge: GoogleFonts.poppins(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold),
+    displayMedium: GoogleFonts.poppins(color: Colors.black, fontSize: 21, fontWeight: FontWeight.w700),
+    displaySmall: GoogleFonts.poppins(color: Colors.black, fontSize: 16, fontWeight: FontWeight.w600),
+    titleLarge: GoogleFonts.poppins(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w600),
   );
   static const MaterialColor color = MaterialColor(
     0xFF00337C, // 0% comes in here, this will be color picked if no shade is selected when defining a Color property which doesn’t require a swatch.
