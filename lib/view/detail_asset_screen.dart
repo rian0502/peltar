@@ -4,9 +4,27 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:peltar/view/component/button_rounded.dart';
 import 'package:peltar/viewmodel/assets_viewmodel.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class DetailAssetScreen extends StatelessWidget {
+class DetailAssetScreen extends StatefulWidget {
   const DetailAssetScreen({super.key});
+
+  @override
+  State<DetailAssetScreen> createState() => _DetailAssetScreenState();
+}
+
+class _DetailAssetScreenState extends State<DetailAssetScreen> {
+  String? role;
+
+  @override
+  void initState() {
+    SharedPreferences.getInstance().then((value) {
+      setState(() {
+        role = value.getString('role');
+      });
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -57,18 +75,19 @@ class DetailAssetScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              Column(
-                children: [
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  ButtonRounded(
-                    title: 'Add Inspection',
-                    route: '/form-inspection',
-                    id: asset?.id ?? 0,
-                  ),
-                ],
-              ),
+              if (role == 'Inspeksi')
+                Column(
+                  children: [
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    ButtonRounded(
+                      title: 'Add Inspection',
+                      route: '/form-inspection',
+                      id: asset?.id ?? 0,
+                    ),
+                  ],
+                ),
               const SizedBox(
                 height: 20,
               ),
